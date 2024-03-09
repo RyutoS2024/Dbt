@@ -1,15 +1,26 @@
-Welcome to your new dbt project!
+## profile.ymlの内容
 
-### Using the starter project
+- account, passwordは適切に置き換える
 
-Try running the following commands:
-- dbt run
-- dbt test
+``` ~/.dbt/profiles.yml
+snowflake:
+  target: dev
+  outputs:
+    dev:
+      account: 'account'
+      database: DBT_DEV
+      password: xxxxxxxxxxxxxx
+      role: ACCOUNTADMIN
+      schema: SNOWFLAKE_TEST
+      threads: 1
+      type: snowflake
+      user: RyutoS
+      warehouse: xxxxxxxxxx
 
-
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+seeds:
+  snowflake:
+    +schema: SNOWFLAKE_TEST
+    my_first_dbt_model_test:
+      +column_types:
+        id: string
+```
